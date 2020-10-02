@@ -1,0 +1,82 @@
+import processing.core.PApplet;
+public class AsteroidsGame extends PApplet 
+{
+    //your variable declarations here
+    private Spaceship s;
+    //private Star[] st;
+    private Asteroid a;
+    private Star[] stars = new Star[200];
+    private Asteroid ast;
+    public static void main(String[] args)
+    {
+        PApplet.main(new String[] {"AsteroidsGame"});
+    }
+
+    public void settings()
+    {
+        // your size() method here
+        size(700, 700);
+        
+    }
+
+    public void setup() 
+    {
+        //your code here
+        s = new Spaceship(this);
+        //st = new Star[100];
+        a = new Asteroid(this);
+        for (int i = 0; i < stars.length; i++)
+        {
+            stars[i] = new Star();
+        }
+    }
+
+    public void draw() 
+    {
+        //your code here
+        background(0, 0, 200);
+        ast.show();
+        s.show();
+        a.show();
+        for (int i = 0; i < stars.length; i++)
+        {
+            stars[i].show();
+        }
+        if (keyPressed)
+        {
+            
+            if (key == 'h')
+            {
+                s.rotate(-5);
+
+            }
+            
+            else if (key == 'k')
+            {
+                s.rotate(5);
+
+            }
+            else if (key == 'u')
+            {
+                s.accelerate(0.9);
+            }
+            
+            else if (key == 'j')
+            {
+                s.accelerate(-1);
+            }
+            
+            else if (key == 'l')
+            {
+                s.setX((int)(Math.random() * 500));
+                s.setY((int)(Math.random() * 500));
+                s.setVelocityX(0);
+                s.setVelocityY(0);
+                s.setPointDirection((int)Math.random() * 360);
+                
+            }
+
+        }
+        s.move();
+    }
+}
